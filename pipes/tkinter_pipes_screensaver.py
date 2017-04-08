@@ -28,12 +28,12 @@ __author__='''
     Note: We Feel Proud To Be Indian
 ######################################################
 '''
-#print __author__
+print __author__
 
 
 # ============ CONFIGURATIONS =====================
 SCREENSAVER_BACKGROUND_COLOR="black"
-TRANSPARENCY_LEVEL = 0.3
+TRANSPARENCY_LEVEL = 0.75
 COLOR_CHOICE = ['blue',"red","yellow","white","skyblue","green"]
 SCREEN_SAVER_CLOSING_EVENTS = ['<Any-KeyPress>', '<Any-Button>', '<Motion>']
 PIPE_WIDTH = 10
@@ -42,22 +42,24 @@ RESTARTING_POINT = 100
 LOOK_LIKE_THREAD = True
 # =================================================
 
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# ===================== Scripts Starts From Here =============================+
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 # *************** Importing Module ****************
 try:
-    import Tkinter, random, time
+    import Tkinter
+    import random
+    import time
 except:
-    import tkinter as Tkinter, random, time
+    import tkinter as Tkinter
+    import random
+    import time
 
 
 # Create Canvas Class
 class Pipes(Tkinter.Canvas):
     def __init__(self, *args, **kwargs):
         Tkinter.Canvas.__init__(self, *args, **kwargs)
+        # Starting Coordinates
         self.coordinates=[0,0,0,0]
+        # Create Line Function
         self.create_pipe()
 
     # Create A Line
@@ -82,20 +84,21 @@ def main():
     root=Tkinter.Tk(className="Pipes screenSaver By Bitforestinfo")
     screen = Pipes(root, bg=SCREENSAVER_BACKGROUND_COLOR)
     screen.pack(expand="yes",fill="both")
-
+    # Tkinter Window Configurations
     root.wait_visibility(screen)
     root.wm_attributes('-alpha',TRANSPARENCY_LEVEL)
     root.wm_attributes("-topmost", True)
     root.overrideredirect(1)
     root.attributes('-fullscreen', True)
-
+    # Window Exit Functions
     def out(event):
         root.destroy()
         return
-    
+    # Event Bindings
     for seq in SCREEN_SAVER_CLOSING_EVENTS:
         root.bind_all(seq, out)
 
+    # Update Loop
     while True:
         root.update()
         root.update_idletasks()
