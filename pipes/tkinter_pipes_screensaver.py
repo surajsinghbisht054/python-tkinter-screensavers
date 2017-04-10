@@ -29,8 +29,6 @@ __author__='''
 ######################################################
 '''
 print __author__
-
-
 # ============ CONFIGURATIONS =====================
 SCREENSAVER_BACKGROUND_COLOR="black"
 TRANSPARENCY_LEVEL = 0.75
